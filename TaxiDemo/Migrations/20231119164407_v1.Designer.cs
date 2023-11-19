@@ -12,7 +12,7 @@ using TaxiDemo.Data;
 namespace TaxiDemo.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231119161738_v1")]
+    [Migration("20231119164407_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -22,6 +22,6 @@ namespace TaxiDemo.Models
         public string? PaymentType { get; set; }
         public CompanyModel? Company { get; set; }
 
-        public List<BookingDriver>? BookingDrivers { get; set; }
+        public virtual ICollection<BookingDriver>? BookingDrivers { get; set; } = new HashSet<BookingDriver>();
     }
 }

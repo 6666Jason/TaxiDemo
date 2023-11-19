@@ -20,6 +20,6 @@ namespace TaxiDemo.Models
         public List<DriverModel>? Drivers { get; set; }
         public List<AdvertiseModel>? Advertises { get; set; }
 
-        public List<BookingCompany>? BookingCompanies { get; set; }
+        public virtual ICollection<BookingCompany>? BookingCompanies { get; set; } = new HashSet<BookingCompany>();
     }
 }

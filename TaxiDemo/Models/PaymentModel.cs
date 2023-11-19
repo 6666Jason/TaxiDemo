@@ -18,7 +18,7 @@ namespace TaxiDemo.Models
         public PaymentStatus Status { get; set; }
         public BookingModel? Booking { get; set; }
 
-        public List<BookingPayment>? BookingPayments { get; set; }
+        public virtual ICollection<BookingPayment>? BookingPayments { get; set; } = new HashSet<BookingPayment>();
 
     }
 
