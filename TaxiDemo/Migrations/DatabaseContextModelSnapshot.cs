@@ -254,6 +254,56 @@ namespace TaxiDemo.Migrations
                     b.ToTable("BookingPayments");
                 });
 
+            modelBuilder.Entity("TaxiDemo.Models.CarModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Brand")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DriverFkId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LicensePlate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Model")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DriverFkId");
+
+                    b.ToTable("Cars");
+                });
+
             modelBuilder.Entity("TaxiDemo.Models.CompanyModel", b =>
                 {
                     b.Property<int>("Id")
@@ -551,12 +601,6 @@ namespace TaxiDemo.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("BookingFkId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BookingId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CompanyFkId")
                         .HasColumnType("int");
 
@@ -590,8 +634,6 @@ namespace TaxiDemo.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookingId");
 
                     b.ToTable("Payments");
                 });
@@ -675,6 +717,17 @@ namespace TaxiDemo.Migrations
                     b.Navigation("Payment");
                 });
 
+            modelBuilder.Entity("TaxiDemo.Models.CarModel", b =>
+                {
+                    b.HasOne("TaxiDemo.Models.DriverModel", "Driver")
+                        .WithMany("Cars")
+                        .HasForeignKey("DriverFkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Driver");
+                });
+
             modelBuilder.Entity("TaxiDemo.Models.DriverModel", b =>
                 {
                     b.HasOne("TaxiDemo.Models.CompanyModel", "Company")
@@ -695,15 +748,6 @@ namespace TaxiDemo.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.PaymentModel", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.BookingModel", "Booking")
-                        .WithMany()
-                        .HasForeignKey("BookingId");
-
-                    b.Navigation("Booking");
                 });
 
             modelBuilder.Entity("TaxiDemo.Models.BookingModel", b =>
@@ -734,6 +778,8 @@ namespace TaxiDemo.Migrations
             modelBuilder.Entity("TaxiDemo.Models.DriverModel", b =>
                 {
                     b.Navigation("BookingDrivers");
+
+                    b.Navigation("Cars");
                 });
 
             modelBuilder.Entity("TaxiDemo.Models.PaymentModel", b =>

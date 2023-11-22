@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FPT APTECH\\ASP.NET Core\\Code\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj": {}
   },
   "projects": {
-    "D:\\FPT APTECH\\ASP.NET Core\\Code\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj": {
+    "C:\\Users\\Admin\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FPT APTECH\\ASP.NET Core\\Code\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj",
         "projectName": "TaxiDemo",
-        "projectPath": "D:\\FPT APTECH\\ASP.NET Core\\Code\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\FPT APTECH\\ASP.NET Core\\Code\\TaxiDemo\\TaxiDemo\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\TaxiDemo\\TaxiDemo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -70,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -10,6 +10,7 @@ namespace TaxiDemo.Models
         public int BookingFkId { get; set; }
         public BookingModel? Booking { get; set; }
 
+
         [ForeignKey("CompanyFkId")]
         public int CompanyFkId { get; set; }
         public CompanyModel? Company { get; set; }

@@ -16,6 +16,7 @@ namespace TaxiDemo.Data
         public DbSet<EmployeeModel>? Employees { get; set; }
         public DbSet<FeedbackModel>? Feedbacks { get; set; }
         public DbSet<PaymentModel>? Payments { get; set; }
+        public DbSet<CarModel>? Cars { get; set; }
         public DbSet<BookingPayment>? BookingPayments { get; set; }
         public DbSet<BookingCompany>? BookingCompanies { get; set; }
 
@@ -99,6 +100,19 @@ namespace TaxiDemo.Data
                 .HasOne(bp => bp.Payment)
                 .WithMany(p => p.BookingPayments)
                 .HasForeignKey(bp => bp.PaymentFkId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Thiết lập mối quan hệ many-to-one giữa Driver và Car
+            modelBuilder.Entity<CarModel>()
+            .HasKey(c => c.Id);
+
+            modelBuilder.Entity<DriverModel>()
+                .HasKey(d => d.Id);
+
+            modelBuilder.Entity<CarModel>()
+                .HasOne(c => c.Driver)
+                .WithMany(d => d.Cars)
+                .HasForeignKey(c => c.DriverFkId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
