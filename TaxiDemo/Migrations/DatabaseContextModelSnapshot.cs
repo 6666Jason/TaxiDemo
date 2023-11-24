@@ -312,9 +312,6 @@ namespace TaxiDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ContactPerson")
                         .HasColumnType("nvarchar(max)");
 
@@ -326,9 +323,6 @@ namespace TaxiDemo.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Designation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FaxNumber")
@@ -343,16 +337,7 @@ namespace TaxiDemo.Migrations
                     b.Property<string>("Mobile")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PaymentType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telephone")
@@ -365,7 +350,13 @@ namespace TaxiDemo.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserFkId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserFkId")
+                        .IsUnique();
 
                     b.ToTable("Companies");
                 });
@@ -429,9 +420,6 @@ namespace TaxiDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
@@ -451,12 +439,6 @@ namespace TaxiDemo.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DriverName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Experience")
                         .HasColumnType("int");
 
@@ -466,13 +448,7 @@ namespace TaxiDemo.Migrations
                     b.Property<string>("Mobile")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PaymentType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telephone")
@@ -485,56 +461,16 @@ namespace TaxiDemo.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserFkId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyFkId");
 
+                    b.HasIndex("UserFkId");
+
                     b.ToTable("Drivers");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.EmployeeModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("TaxiDemo.Models.FeedbackModel", b =>
@@ -590,6 +526,24 @@ namespace TaxiDemo.Migrations
                     b.ToTable("Feedbacks");
                 });
 
+            modelBuilder.Entity("TaxiDemo.Models.OtherEntityModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("UserFkId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserFkId");
+
+                    b.ToTable("OtherEntityModel");
+                });
+
             modelBuilder.Entity("TaxiDemo.Models.PaymentModel", b =>
                 {
                     b.Property<int>("Id")
@@ -636,6 +590,92 @@ namespace TaxiDemo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("TaxiDemo.Models.RoleUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("RoleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoleUsers");
+                });
+
+            modelBuilder.Entity("TaxiDemo.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OtherEntitiesFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleUserFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleUserFkId");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("TaxiDemo.Models.AdvertiseModel", b =>
@@ -728,6 +768,17 @@ namespace TaxiDemo.Migrations
                     b.Navigation("Driver");
                 });
 
+            modelBuilder.Entity("TaxiDemo.Models.CompanyModel", b =>
+                {
+                    b.HasOne("TaxiDemo.Models.User", "User")
+                        .WithOne("Company")
+                        .HasForeignKey("TaxiDemo.Models.CompanyModel", "UserFkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TaxiDemo.Models.DriverModel", b =>
                 {
                     b.HasOne("TaxiDemo.Models.CompanyModel", "Company")
@@ -736,7 +787,15 @@ namespace TaxiDemo.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TaxiDemo.Models.User", "User")
+                        .WithMany("Drivers")
+                        .HasForeignKey("UserFkId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Company");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TaxiDemo.Models.FeedbackModel", b =>
@@ -748,6 +807,28 @@ namespace TaxiDemo.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("TaxiDemo.Models.OtherEntityModel", b =>
+                {
+                    b.HasOne("TaxiDemo.Models.User", "User")
+                        .WithMany("OtherEntities")
+                        .HasForeignKey("UserFkId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TaxiDemo.Models.User", b =>
+                {
+                    b.HasOne("TaxiDemo.Models.RoleUser", "RoleUser")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleUserFkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RoleUser");
                 });
 
             modelBuilder.Entity("TaxiDemo.Models.BookingModel", b =>
@@ -785,6 +866,20 @@ namespace TaxiDemo.Migrations
             modelBuilder.Entity("TaxiDemo.Models.PaymentModel", b =>
                 {
                     b.Navigation("BookingPayments");
+                });
+
+            modelBuilder.Entity("TaxiDemo.Models.RoleUser", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("TaxiDemo.Models.User", b =>
+                {
+                    b.Navigation("Company");
+
+                    b.Navigation("Drivers");
+
+                    b.Navigation("OtherEntities");
                 });
 #pragma warning restore 612, 618
         }

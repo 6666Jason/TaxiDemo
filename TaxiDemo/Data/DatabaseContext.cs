@@ -13,7 +13,6 @@ namespace TaxiDemo.Data
         public DbSet<CompanyModel>? Companies { get; set; }
         public DbSet<CustomerModel>? Customers { get; set; }
         public DbSet<DriverModel>? Drivers { get; set; }
-        public DbSet<EmployeeModel>? Employees { get; set; }
         public DbSet<FeedbackModel>? Feedbacks { get; set; }
         public DbSet<PaymentModel>? Payments { get; set; }
         public DbSet<CarModel>? Cars { get; set; }
@@ -21,10 +20,38 @@ namespace TaxiDemo.Data
         public DbSet<BookingCompany>? BookingCompanies { get; set; }
 
         public DbSet<BookingDriver>? BookingDrivers { get; set; }
+        public DbSet<User>? Users { get; set; }
+        public DbSet<RoleUser>? RoleUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            // Thiết lập mối quan hệ one-to-one giữa User và Company
+            modelBuilder.Entity<User>()
+               .HasOne(u => u.Company)
+               .WithOne(c => c.User)
+               .HasForeignKey<CompanyModel>(c => c.UserFkId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            // Thiết lập mối quan hệ one-to-many giữa User và Driver
+            modelBuilder.Entity<User>()
+            .HasMany(u => u.Drivers)
+            .WithOne(d => d.User)
+            .HasForeignKey(d => d.UserFkId)
+            .OnDelete(DeleteBehavior.Restrict); // Sửa từ Cascade thành Restrict
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.OtherEntities)
+                .WithOne(o => o.User)
+                .HasForeignKey(o => o.UserFkId)
+                .OnDelete(DeleteBehavior.Restrict); // Hoặc sửa từ Cascade thành Restrict
+
+            // Thiết lập mối quan hệ one-to-many giữa RoleUser và User
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.RoleUser)
+                .WithMany(ru => ru.Users)
+                .HasForeignKey(u => u.RoleUserFkId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Thiết lập mối quan hệ many-to-one giữa Driver và Company
             modelBuilder.Entity<CompanyModel>()
@@ -114,6 +141,8 @@ namespace TaxiDemo.Data
                 .WithMany(d => d.Cars)
                 .HasForeignKey(c => c.DriverFkId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            
         }
     }
 }
