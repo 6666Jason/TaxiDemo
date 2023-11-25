@@ -16,7 +16,7 @@ namespace TaxiDemo.Models
         public string? PickupLocation { get; set; }
         public string? DropLocation { get; set; }
         public BookingStatus Status { get; set; }
-        public CustomerModel? Customer { get; set; }
+        public User? User { get; set; }
         public virtual ICollection<BookingPayment>? BookingPayments { get; set; }
         public virtual ICollection <BookingCompany>? BookingCompanies { get; set; } = new HashSet<BookingCompany>();
         public virtual ICollection <BookingDriver>? BookingDrivers { get; set; } = new HashSet<BookingDriver>();

@@ -17,6 +17,9 @@ namespace TaxiDemo.Models
         public virtual ICollection<DriverModel>? Drivers { get; set; }
         // Khóa ngoại để liên kết với OtherEntities
         public int OtherEntitiesFkId { get; set; }
-        public ICollection<OtherEntityModel>? OtherEntities { get; set; }
+        public virtual ICollection<FeedbackModel>? Feedbacks { get; set; }
+
+
+        public List<BookingModel>? Bookings { get; set; }
     }
 }

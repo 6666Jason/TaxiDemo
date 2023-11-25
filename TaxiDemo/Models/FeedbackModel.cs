@@ -14,7 +14,7 @@ namespace TaxiDemo.Models
         public FeedbackType Type { get; set; }
         public string? Description { get; set; }
 
-        public CustomerModel? Customer { get; set; }
+        public User? User { get; set; }
     }
 
     public enum FeedbackType

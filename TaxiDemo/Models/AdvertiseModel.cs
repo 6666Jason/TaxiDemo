@@ -9,6 +9,8 @@ namespace TaxiDemo.Models
         public string? CompanyName { get; set; }
         [ForeignKey("CompanyFkId")]
         public int CompanyFkId { get; set; }  // Foreign Key to link with the Company model
+        [ForeignKey("DriverFkId")]
+        public int DriverFkId { get; set; }
         public string? Designation { get; set; }
         public string? Address { get; set; }
         public string? Mobile { get; set; }
@@ -19,5 +21,6 @@ namespace TaxiDemo.Models
         public string? PaymentType { get; set; }
 
         public CompanyModel? Company { get; set; }
+        public DriverModel? Driver { get; set; }
     }
 }

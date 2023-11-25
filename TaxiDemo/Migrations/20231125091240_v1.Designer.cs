@@ -12,7 +12,7 @@ using TaxiDemo.Data;
 namespace TaxiDemo.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231124104749_v1")]
+    [Migration("20231125091240_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,9 @@ namespace TaxiDemo.Migrations
                     b.Property<string>("Designation")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DriverFkId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -82,6 +85,8 @@ namespace TaxiDemo.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyFkId");
+
+                    b.HasIndex("DriverFkId");
 
                     b.ToTable("Advertises");
                 });
@@ -256,56 +261,6 @@ namespace TaxiDemo.Migrations
                     b.ToTable("BookingPayments");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.CarModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Brand")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Color")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DriverFkId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LicensePlate")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Model")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DriverFkId");
-
-                    b.ToTable("Cars");
-                });
-
             modelBuilder.Entity("TaxiDemo.Models.CompanyModel", b =>
                 {
                     b.Property<int>("Id")
@@ -363,57 +318,6 @@ namespace TaxiDemo.Migrations
                     b.ToTable("Companies");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.CustomerModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CustomerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<decimal>("MoneySpent")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("TotalCost")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customers");
-                });
-
             modelBuilder.Entity("TaxiDemo.Models.DriverModel", b =>
                 {
                     b.Property<int>("Id")
@@ -422,7 +326,13 @@ namespace TaxiDemo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("Brand")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CompanyFkId")
@@ -447,7 +357,13 @@ namespace TaxiDemo.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("LicensePlate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Mobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PaymentType")
@@ -464,6 +380,9 @@ namespace TaxiDemo.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserFkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -526,24 +445,6 @@ namespace TaxiDemo.Migrations
                     b.HasIndex("CustomerFkId");
 
                     b.ToTable("Feedbacks");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.OtherEntityModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("UserFkId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserFkId");
-
-                    b.ToTable("OtherEntityModel");
                 });
 
             modelBuilder.Entity("TaxiDemo.Models.PaymentModel", b =>
@@ -685,10 +586,18 @@ namespace TaxiDemo.Migrations
                     b.HasOne("TaxiDemo.Models.CompanyModel", "Company")
                         .WithMany("Advertises")
                         .HasForeignKey("CompanyFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("TaxiDemo.Models.DriverModel", "Driver")
+                        .WithMany("Advertises")
+                        .HasForeignKey("DriverFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Company");
+
+                    b.Navigation("Driver");
                 });
 
             modelBuilder.Entity("TaxiDemo.Models.BookingCompany", b =>
@@ -696,13 +605,13 @@ namespace TaxiDemo.Migrations
                     b.HasOne("TaxiDemo.Models.BookingModel", "Booking")
                         .WithMany("BookingCompanies")
                         .HasForeignKey("BookingFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("TaxiDemo.Models.CompanyModel", "Company")
                         .WithMany("BookingCompanies")
                         .HasForeignKey("CompanyFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Booking");
@@ -715,13 +624,13 @@ namespace TaxiDemo.Migrations
                     b.HasOne("TaxiDemo.Models.BookingModel", "Booking")
                         .WithMany("BookingDrivers")
                         .HasForeignKey("BookingFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("TaxiDemo.Models.DriverModel", "Driver")
                         .WithMany("BookingDrivers")
                         .HasForeignKey("DriverFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Booking");
@@ -731,13 +640,13 @@ namespace TaxiDemo.Migrations
 
             modelBuilder.Entity("TaxiDemo.Models.BookingModel", b =>
                 {
-                    b.HasOne("TaxiDemo.Models.CustomerModel", "Customer")
+                    b.HasOne("TaxiDemo.Models.User", "User")
                         .WithMany("Bookings")
                         .HasForeignKey("CustomerFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TaxiDemo.Models.BookingPayment", b =>
@@ -745,13 +654,13 @@ namespace TaxiDemo.Migrations
                     b.HasOne("TaxiDemo.Models.BookingModel", "Booking")
                         .WithMany("BookingPayments")
                         .HasForeignKey("BookingFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("TaxiDemo.Models.PaymentModel", "Payment")
                         .WithMany("BookingPayments")
                         .HasForeignKey("PaymentFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Booking");
@@ -759,23 +668,12 @@ namespace TaxiDemo.Migrations
                     b.Navigation("Payment");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.CarModel", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.DriverModel", "Driver")
-                        .WithMany("Cars")
-                        .HasForeignKey("DriverFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Driver");
-                });
-
             modelBuilder.Entity("TaxiDemo.Models.CompanyModel", b =>
                 {
                     b.HasOne("TaxiDemo.Models.User", "User")
                         .WithOne("Company")
                         .HasForeignKey("TaxiDemo.Models.CompanyModel", "UserFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -786,13 +684,13 @@ namespace TaxiDemo.Migrations
                     b.HasOne("TaxiDemo.Models.CompanyModel", "Company")
                         .WithMany("Drivers")
                         .HasForeignKey("CompanyFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("TaxiDemo.Models.User", "User")
                         .WithMany("Drivers")
                         .HasForeignKey("UserFkId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Company");
@@ -802,21 +700,10 @@ namespace TaxiDemo.Migrations
 
             modelBuilder.Entity("TaxiDemo.Models.FeedbackModel", b =>
                 {
-                    b.HasOne("TaxiDemo.Models.CustomerModel", "Customer")
+                    b.HasOne("TaxiDemo.Models.User", "User")
                         .WithMany("Feedbacks")
                         .HasForeignKey("CustomerFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.OtherEntityModel", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.User", "User")
-                        .WithMany("OtherEntities")
-                        .HasForeignKey("UserFkId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -827,7 +714,7 @@ namespace TaxiDemo.Migrations
                     b.HasOne("TaxiDemo.Models.RoleUser", "RoleUser")
                         .WithMany("Users")
                         .HasForeignKey("RoleUserFkId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("RoleUser");
@@ -851,18 +738,11 @@ namespace TaxiDemo.Migrations
                     b.Navigation("Drivers");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.CustomerModel", b =>
-                {
-                    b.Navigation("Bookings");
-
-                    b.Navigation("Feedbacks");
-                });
-
             modelBuilder.Entity("TaxiDemo.Models.DriverModel", b =>
                 {
-                    b.Navigation("BookingDrivers");
+                    b.Navigation("Advertises");
 
-                    b.Navigation("Cars");
+                    b.Navigation("BookingDrivers");
                 });
 
             modelBuilder.Entity("TaxiDemo.Models.PaymentModel", b =>
@@ -877,11 +757,13 @@ namespace TaxiDemo.Migrations
 
             modelBuilder.Entity("TaxiDemo.Models.User", b =>
                 {
+                    b.Navigation("Bookings");
+
                     b.Navigation("Company");
 
                     b.Navigation("Drivers");
 
-                    b.Navigation("OtherEntities");
+                    b.Navigation("Feedbacks");
                 });
 #pragma warning restore 612, 618
         }

@@ -15,14 +15,20 @@ namespace TaxiDemo.Models
         public int Experience { get; set; }
         public string? Description { get; set; }
         public string? PaymentType { get; set; }
+        public string? Brand { get; set; }   // Thương hiệu
+        public string? Model { get; set; }   // Mô hình
+        public int Year { get; set; }       // Năm sản xuất
+        public string? Color { get; set; }   // Màu sắc
+        public string? LicensePlate { get; set; } // Biển số xe
         public CompanyModel? Company { get; set; }
         [ForeignKey("UserFkId")]
         public int UserFkId { get; set; }
         public User? User { get; set; }
-        public virtual ICollection<CarModel>? Cars { get; set; } // Navigation property
 
         public virtual ICollection<BookingDriver>? BookingDrivers { get; set; } = new HashSet<BookingDriver>();
 
-        
+        public virtual ICollection<AdvertiseModel>? Advertises { get; set; }
+
+
     }
 }
