@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj": {}
+    "C:\\Users\\Asus\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj": {
+    "C:\\Users\\Asus\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj",
+        "projectUniqueName": "C:\\Users\\Asus\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj",
         "projectName": "TaxiDemo",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\TaxiDemo\\TaxiDemo\\obj\\",
+        "projectPath": "C:\\Users\\Asus\\Desktop\\TaxiDemo\\TaxiDemo\\TaxiDemo.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Asus\\Desktop\\TaxiDemo\\TaxiDemo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
